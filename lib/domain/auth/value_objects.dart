@@ -18,7 +18,7 @@ class EmailAddress extends ValueObject<String> {
 class Password extends ValueObject<String> {
   factory Password(String input) {
     return Password._(
-      validateEmailAddress(input),
+      validatePassword(input),
     );
   }
   const Password._(this.value);
