@@ -2,33 +2,40 @@ import 'dart:convert';
 
 class Names {
   final int id;
-  final String nameTrade;
+  final String tradeName;
+  final String altName;
+
   Names({
     required this.id,
-    required this.nameTrade,
+    required this.tradeName,
+    required this.altName,
   });
 
   Names copyWith({
     int? id,
-    String? nameTrade,
+    String? tradeName,
+    String? altName,
   }) {
     return Names(
       id: id ?? this.id,
-      nameTrade: nameTrade ?? this.nameTrade,
+      tradeName: tradeName ?? this.tradeName,
+      altName: altName ?? this.altName,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'nameTrade': nameTrade,
+      'tradeName': tradeName,
+      'altName': altName,
     };
   }
 
   factory Names.fromMap(Map<String, dynamic> map) {
     return Names(
       id: map['id'],
-      nameTrade: map['nameTrade'],
+      tradeName: map['tradeName'],
+      altName: map['altName'],
     );
   }
 
@@ -37,15 +44,19 @@ class Names {
   factory Names.fromJson(String source) => Names.fromMap(json.decode(source));
 
   @override
-  String toString() => 'Names(id: $id, nameTrade: $nameTrade)';
+  String toString() =>
+      'Names(id: $id, tradeName: $tradeName, altName: $altName)';
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is Names && other.id == id && other.nameTrade == nameTrade;
+    return other is Names &&
+        other.id == id &&
+        other.tradeName == tradeName &&
+        other.altName == altName;
   }
 
   @override
-  int get hashCode => id.hashCode ^ nameTrade.hashCode;
+  int get hashCode => id.hashCode ^ tradeName.hashCode ^ altName.hashCode;
 }

@@ -2,34 +2,39 @@ import 'dart:convert';
 
 class Species {
   final int id;
-  final String name;
-
+  final String nameRus;
+  final String nameLat;
   Species({
     required this.id,
-    required this.name,
+    required this.nameRus,
+    required this.nameLat,
   });
 
   Species copyWith({
     int? id,
-    String? name,
+    String? nameRus,
+    String? nameLat,
   }) {
     return Species(
       id: id ?? this.id,
-      name: name ?? this.name,
+      nameRus: nameRus ?? this.nameRus,
+      nameLat: nameLat ?? this.nameLat,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'name': name,
+      'nameRus': nameRus,
+      'nameLat': nameLat,
     };
   }
 
   factory Species.fromMap(Map<String, dynamic> map) {
     return Species(
       id: map['id'],
-      name: map['name'],
+      nameRus: map['nameRus'],
+      nameLat: map['nameLat'],
     );
   }
 
@@ -39,15 +44,18 @@ class Species {
       Species.fromMap(json.decode(source));
 
   @override
-  String toString() => 'Species(id: $id, name: $name)';
+  String toString() => 'Species(id: $id, nameRus: $nameRus, nameLat: $nameLat)';
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is Species && other.id == id && other.name == name;
+    return other is Species &&
+        other.id == id &&
+        other.nameRus == nameRus &&
+        other.nameLat == nameLat;
   }
 
   @override
-  int get hashCode => id.hashCode ^ name.hashCode;
+  int get hashCode => id.hashCode ^ nameRus.hashCode ^ nameLat.hashCode;
 }

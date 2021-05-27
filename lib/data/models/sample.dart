@@ -10,24 +10,23 @@ import 'user.dart';
 
 class Sample {
   final int id;
-  final BotanicDescription botanicDescriprtion;
+  final BotanicDescription botanicDescription;
   final String place;
   final User whoCollect;
   final User whoDefine;
-  final int isTrade;
+  final bool trade;
   final DateTime collectDate;
   final Set<Photo> photos;
   final String description;
   final SampleProperty property;
   final Names names;
-
   Sample({
     required this.id,
-    required this.botanicDescriprtion,
+    required this.botanicDescription,
     required this.place,
     required this.whoCollect,
     required this.whoDefine,
-    required this.isTrade,
+    required this.trade,
     required this.collectDate,
     required this.photos,
     required this.description,
@@ -37,11 +36,11 @@ class Sample {
 
   Sample copyWith({
     int? id,
-    BotanicDescription? botanicDescriprtion,
+    BotanicDescription? botanicDescription,
     String? place,
     User? whoCollect,
     User? whoDefine,
-    int? isTrade,
+    bool? trade,
     DateTime? collectDate,
     Set<Photo>? photos,
     String? description,
@@ -50,11 +49,11 @@ class Sample {
   }) {
     return Sample(
       id: id ?? this.id,
-      botanicDescriprtion: botanicDescriprtion ?? this.botanicDescriprtion,
+      botanicDescription: botanicDescription ?? this.botanicDescription,
       place: place ?? this.place,
       whoCollect: whoCollect ?? this.whoCollect,
       whoDefine: whoDefine ?? this.whoDefine,
-      isTrade: isTrade ?? this.isTrade,
+      trade: trade ?? this.trade,
       collectDate: collectDate ?? this.collectDate,
       photos: photos ?? this.photos,
       description: description ?? this.description,
@@ -66,11 +65,11 @@ class Sample {
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'botanicDescriprtion': botanicDescriprtion.toMap(),
+      'botanicDescription': botanicDescription.toMap(),
       'place': place,
       'whoCollect': whoCollect.toMap(),
       'whoDefine': whoDefine.toMap(),
-      'isTrade': isTrade,
+      'trade': trade,
       'collectDate': collectDate.millisecondsSinceEpoch,
       'photos': photos.map((x) => x.toMap()).toList(),
       'description': description,
@@ -82,12 +81,11 @@ class Sample {
   factory Sample.fromMap(Map<String, dynamic> map) {
     return Sample(
       id: map['id'],
-      botanicDescriprtion:
-          BotanicDescription.fromMap(map['botanicDescriprtion']),
+      botanicDescription: BotanicDescription.fromMap(map['botanicDescription']),
       place: map['place'],
       whoCollect: User.fromMap(map['whoCollect']),
       whoDefine: User.fromMap(map['whoDefine']),
-      isTrade: map['isTrade'],
+      trade: map['trade'],
       collectDate: DateTime.parse(map['collectDate']),
       photos: Set<Photo>.from(map['photos']?.map((x) => Photo.fromMap(x))),
       description: map['description'],
@@ -102,8 +100,7 @@ class Sample {
 
   @override
   String toString() {
-    // ignore: lines_longer_than_80_chars
-    return 'Sample(id: $id, botanicDescriprtion: $botanicDescriprtion, place: $place, whoCollect: $whoCollect, whoDefine: $whoDefine, isTrade: $isTrade, collectDate: $collectDate, photos: $photos, description: $description, property: $property, names: $names)';
+    return 'Sample(id: $id, botanicDescription: $botanicDescription, place: $place, whoCollect: $whoCollect, whoDefine: $whoDefine, trade: $trade, collectDate: $collectDate, photos: $photos, description: $description, property: $property, names: $names)';
   }
 
   @override
@@ -112,11 +109,11 @@ class Sample {
 
     return other is Sample &&
         other.id == id &&
-        other.botanicDescriprtion == botanicDescriprtion &&
+        other.botanicDescription == botanicDescription &&
         other.place == place &&
         other.whoCollect == whoCollect &&
         other.whoDefine == whoDefine &&
-        other.isTrade == isTrade &&
+        other.trade == trade &&
         other.collectDate == collectDate &&
         setEquals(other.photos, photos) &&
         other.description == description &&
@@ -127,11 +124,11 @@ class Sample {
   @override
   int get hashCode {
     return id.hashCode ^
-        botanicDescriprtion.hashCode ^
+        botanicDescription.hashCode ^
         place.hashCode ^
         whoCollect.hashCode ^
         whoDefine.hashCode ^
-        isTrade.hashCode ^
+        trade.hashCode ^
         collectDate.hashCode ^
         photos.hashCode ^
         description.hashCode ^

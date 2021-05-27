@@ -12,7 +12,7 @@ class BotanicDescription {
   final Division divisio;
   final Classis classis;
   final Ordo ordo;
-  final Family familiy;
+  final Family family;
   final Genus genus;
   final Species species;
 
@@ -21,7 +21,7 @@ class BotanicDescription {
     required this.divisio,
     required this.classis,
     required this.ordo,
-    required this.familiy,
+    required this.family,
     required this.genus,
     required this.species,
   });
@@ -31,7 +31,7 @@ class BotanicDescription {
     Division? divisio,
     Classis? classis,
     Ordo? ordo,
-    Family? familiy,
+    Family? family,
     Genus? genus,
     Species? species,
   }) {
@@ -40,7 +40,7 @@ class BotanicDescription {
       divisio: divisio ?? this.divisio,
       classis: classis ?? this.classis,
       ordo: ordo ?? this.ordo,
-      familiy: familiy ?? this.familiy,
+      family: family ?? this.family,
       genus: genus ?? this.genus,
       species: species ?? this.species,
     );
@@ -52,7 +52,7 @@ class BotanicDescription {
       'divisio': divisio.toMap(),
       'classis': classis.toMap(),
       'ordo': ordo.toMap(),
-      'familiy': familiy.toMap(),
+      'family': family.toMap(),
       'genus': genus.toMap(),
       'species': species.toMap(),
     };
@@ -64,7 +64,7 @@ class BotanicDescription {
       divisio: Division.fromMap(map['divisio']),
       classis: Classis.fromMap(map['classis']),
       ordo: Ordo.fromMap(map['ordo']),
-      familiy: Family.fromMap(map['familiy']),
+      family: Family.fromMap(map['family']),
       genus: Genus.fromMap(map['genus']),
       species: Species.fromMap(map['species']),
     );
@@ -78,7 +78,7 @@ class BotanicDescription {
   @override
   String toString() {
     // ignore: lines_longer_than_80_chars
-    return 'BotanicDescription(id: $id, divisio: $divisio, classis: $classis, ordo: $ordo, familiy: $familiy, genus: $genus, species: $species)';
+    return 'BotanicDescription(id: $id, divisio: $divisio, classis: $classis, ordo: $ordo, familiy: $family, genus: $genus, species: $species)';
   }
 
   @override
@@ -90,7 +90,7 @@ class BotanicDescription {
         other.divisio == divisio &&
         other.classis == classis &&
         other.ordo == ordo &&
-        other.familiy == familiy &&
+        other.family == family &&
         other.genus == genus &&
         other.species == species;
   }
@@ -101,7 +101,7 @@ class BotanicDescription {
         divisio.hashCode ^
         classis.hashCode ^
         ordo.hashCode ^
-        familiy.hashCode ^
+        family.hashCode ^
         genus.hashCode ^
         species.hashCode;
   }

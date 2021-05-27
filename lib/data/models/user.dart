@@ -1,96 +1,82 @@
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
-import 'botanic_description.dart';
-import 'names.dart';
-import 'photo.dart';
-import 'sample_property.dart';
-
 class User {
   final int id;
-  final BotanicDescription botanicDescriprtion;
-  final String place;
-  final User whoCollect;
-  final User whoDefine;
-  final int isTrade;
-  final DateTime collectDate;
-  final Set<Photo> photos;
-  final String description;
-  final SampleProperty property;
-  final Names names;
-
+  final String firstName;
+  final String secondName;
+  final String lastName;
+  final String organization;
+  final String username;
+  final String password;
+  final String email;
+  final String phone;
+  final String about;
   User({
     required this.id,
-    required this.botanicDescriprtion,
-    required this.place,
-    required this.whoCollect,
-    required this.whoDefine,
-    required this.isTrade,
-    required this.collectDate,
-    required this.photos,
-    required this.description,
-    required this.property,
-    required this.names,
+    required this.firstName,
+    required this.secondName,
+    required this.lastName,
+    required this.organization,
+    required this.username,
+    required this.password,
+    required this.email,
+    required this.phone,
+    required this.about,
   });
 
   User copyWith({
     int? id,
-    BotanicDescription? botanicDescriprtion,
-    String? place,
-    User? whoCollect,
-    User? whoDefine,
-    int? isTrade,
-    DateTime? collectDate,
-    Set<Photo>? photos,
-    String? description,
-    SampleProperty? property,
-    Names? names,
+    String? firstName,
+    String? secondName,
+    String? lastName,
+    String? organization,
+    String? username,
+    String? password,
+    String? email,
+    String? phone,
+    String? about,
   }) {
     return User(
       id: id ?? this.id,
-      botanicDescriprtion: botanicDescriprtion ?? this.botanicDescriprtion,
-      place: place ?? this.place,
-      whoCollect: whoCollect ?? this.whoCollect,
-      whoDefine: whoDefine ?? this.whoDefine,
-      isTrade: isTrade ?? this.isTrade,
-      collectDate: collectDate ?? this.collectDate,
-      photos: photos ?? this.photos,
-      description: description ?? this.description,
-      property: property ?? this.property,
-      names: names ?? this.names,
+      firstName: firstName ?? this.firstName,
+      secondName: secondName ?? this.secondName,
+      lastName: lastName ?? this.lastName,
+      organization: organization ?? this.organization,
+      username: username ?? this.username,
+      password: password ?? this.password,
+      email: email ?? this.email,
+      phone: phone ?? this.phone,
+      about: about ?? this.about,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'botanicDescriprtion': botanicDescriprtion.toMap(),
-      'place': place,
-      'whoCollect': whoCollect.toMap(),
-      'whoDefine': whoDefine.toMap(),
-      'isTrade': isTrade,
-      'collectDate': collectDate.millisecondsSinceEpoch,
-      'photos': photos.map((x) => x.toMap()).toList(),
-      'description': description,
-      'property': property.toMap(),
-      'names': names.toMap(),
+      'firstName': firstName,
+      'secondName': secondName,
+      'lastName': lastName,
+      'organization': organization,
+      'username': username,
+      'password': password,
+      'email': email,
+      'phone': phone,
+      'about': about,
     };
   }
 
   factory User.fromMap(Map<String, dynamic> map) {
     return User(
       id: map['id'],
-      botanicDescriprtion:
-          BotanicDescription.fromMap(map['botanicDescriprtion']),
-      place: map['place'],
-      whoCollect: User.fromMap(map['whoCollect']),
-      whoDefine: User.fromMap(map['whoDefine']),
-      isTrade: map['isTrade'],
-      collectDate: DateTime.parse(map['collectDate']),
-      photos: Set<Photo>.from(map['photos']?.map((x) => Photo.fromMap(x))),
-      description: map['description'],
-      property: SampleProperty.fromMap(map['property']),
-      names: Names.fromMap(map['names']),
+      firstName: map['firstName'],
+      secondName: map['secondName'],
+      lastName: map['lastName'],
+      organization: map['organization'],
+      username: map['username'],
+      password: map['password'],
+      email: map['email'],
+      phone: map['phone'],
+      about: map['about'],
     );
   }
 
@@ -100,7 +86,7 @@ class User {
 
   @override
   String toString() {
-    return 'User(id: $id, botanicDescriprtion: $botanicDescriprtion, place: $place, whoCollect: $whoCollect, whoDefine: $whoDefine, isTrade: $isTrade, collectDate: $collectDate, photos: $photos, description: $description, property: $property, names: $names)';
+    return 'User(id: $id, firstName: $firstName, secondName: $secondName, lastName: $lastName, organization: $organization, username: $username, password: $password, email: $email, phone: $phone, about: $about)';
   }
 
   @override
@@ -109,30 +95,28 @@ class User {
 
     return other is User &&
         other.id == id &&
-        other.botanicDescriprtion == botanicDescriprtion &&
-        other.place == place &&
-        other.whoCollect == whoCollect &&
-        other.whoDefine == whoDefine &&
-        other.isTrade == isTrade &&
-        other.collectDate == collectDate &&
-        setEquals(other.photos, photos) &&
-        other.description == description &&
-        other.property == property &&
-        other.names == names;
+        other.firstName == firstName &&
+        other.secondName == secondName &&
+        other.lastName == lastName &&
+        other.organization == organization &&
+        other.username == username &&
+        other.password == password &&
+        other.email == email &&
+        other.phone == phone &&
+        other.about == about;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-        botanicDescriprtion.hashCode ^
-        place.hashCode ^
-        whoCollect.hashCode ^
-        whoDefine.hashCode ^
-        isTrade.hashCode ^
-        collectDate.hashCode ^
-        photos.hashCode ^
-        description.hashCode ^
-        property.hashCode ^
-        names.hashCode;
+        firstName.hashCode ^
+        secondName.hashCode ^
+        lastName.hashCode ^
+        organization.hashCode ^
+        username.hashCode ^
+        password.hashCode ^
+        email.hashCode ^
+        phone.hashCode ^
+        about.hashCode;
   }
 }

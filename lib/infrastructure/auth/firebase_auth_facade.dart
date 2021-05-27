@@ -1,11 +1,17 @@
+import 'dart:convert';
+
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
+import 'package:xyloteka/consts/http_consts.dart';
+import 'package:xyloteka/data/models/auth_model.dart';
+import 'package:xyloteka/data/repository/shared_preference_repository.dart';
 import 'package:xyloteka/domain/auth/auth_failure.dart';
 import 'package:xyloteka/domain/auth/i_auth_facade.dart';
 import 'package:xyloteka/domain/auth/user.dart';
 import 'package:xyloteka/domain/auth/value_objects.dart';
+import 'package:http/http.dart' as http;
 import './firebase_user_mapper.dart';
 
 @LazySingleton(as: IAuthFacade)
@@ -22,45 +28,61 @@ class FirebaseAuthFacade implements IAuthFacade {
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({
     required EmailAddress emailAddress,
     required Password password,
+    required String username,
   }) async {
     final emailAddressStr = emailAddress.getOrCrash();
     final passwordStr = password.getOrCrash();
-    try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
-        email: emailAddressStr,
-        password: passwordStr,
-      );
-      return right(unit);
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'ERROR_EMAIL_ALREADY_IN_USE') {
-        return left(const AuthFailure.emailAlreadyInUse());
-      } else {
-        return left(const AuthFailure.serverError());
-      }
-    }
+    var signUpRequest = SignUpRequest(
+      username: username,
+      email: emailAddressStr,
+      password: passwordStr,
+    );
+    print(signUpRequest.toJson());
+    await http.post(
+      Uri.parse('${HttpConsts.url}/api/auth/signup'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: signUpRequest.toJson(),
+    );
+    return right(unit);
   }
 
   @override
   Future<Either<AuthFailure, Unit>> signInWithEmailAndPassword({
     required EmailAddress emailAddress,
     required Password password,
+    required String username,
   }) async {
-    final emailAddressStr = emailAddress.getOrCrash();
+    var sharedPreferenceRepository = SharedPreferenceRepository();
+
     final passwordStr = password.getOrCrash();
-    try {
-      await _firebaseAuth.signInWithEmailAndPassword(
-        email: emailAddressStr,
-        password: passwordStr,
-      );
-      return right(unit);
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'ERROR_WRONG_PASSWORD' ||
-          e.code == 'ERROR_USER_NOT_FOUND') {
-        return left(const AuthFailure.invalidEmailAndPassword());
-      } else {
-        return left(const AuthFailure.serverError());
-      }
+
+    var loginRequest = LoginRequest(
+      username: username,
+      password: passwordStr,
+    );
+    print(loginRequest);
+    final response = await http.post(
+      Uri.parse('${HttpConsts.url}/api/auth/signin'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: loginRequest.toJson(),
+    );
+    if (response.statusCode == 200) {
+      var loginResponse =
+          LoginResponse.fromMap(jsonDecode((utf8.decode(response.bodyBytes))));
+      sharedPreferenceRepository
+        ..addKeyToSF(loginResponse.accessToken)
+        ..addBoolToSF(
+          'login',
+          true,
+        );
+    } else {
+      throw Exception('Failed to load post');
     }
+    return right(unit);
   }
 
   @override

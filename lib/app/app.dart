@@ -35,11 +35,11 @@ class App extends StatelessWidget {
           accentColor: const Color(0xFF13B9FF),
           appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
         ),
-        localizationsDelegates: [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-        ],
-        supportedLocales: AppLocalizations.supportedLocales,
+        // localizationsDelegates: [
+        //   AppLocalizations.delegate,
+        //   GlobalMaterialLocalizations.delegate,
+        // ],
+        // supportedLocales: AppLocalizations.supportedLocales,
       ),
     );
   }

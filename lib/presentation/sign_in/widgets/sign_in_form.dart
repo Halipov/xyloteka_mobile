@@ -75,6 +75,17 @@ class SignInForm extends StatelessWidget {
                         TextFormField(
                           decoration: const InputDecoration(
                             prefixIcon: Icon(Icons.email),
+                            labelText: 'Username',
+                          ),
+                          autocorrect: false,
+                          onChanged: (value) => context
+                              .read<SignInFormBloc>()
+                              .add(SignInFormEvent.usernameChange(value)),
+                        ),
+                        const SizedBox(height: 8),
+                        TextFormField(
+                          decoration: const InputDecoration(
+                            prefixIcon: Icon(Icons.email),
                             labelText: 'Email',
                           ),
                           autocorrect: false,

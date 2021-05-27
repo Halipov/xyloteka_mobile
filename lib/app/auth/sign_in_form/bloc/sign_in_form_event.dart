@@ -2,6 +2,8 @@ part of 'sign_in_form_bloc.dart';
 
 @freezed
 class SignInFormEvent with _$SignInFormEvent {
+  const factory SignInFormEvent.usernameChange(String usernameStr) =
+      UserNameChange;
   const factory SignInFormEvent.emailChange(String emailStr) = EmailChange;
   const factory SignInFormEvent.passwordChange(String passwordStr) =
       PasswordChange;

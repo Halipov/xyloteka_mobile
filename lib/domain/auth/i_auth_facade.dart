@@ -9,10 +9,12 @@ abstract class IAuthFacade {
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({
     required EmailAddress emailAddress,
     required Password password,
+    required String username,
   });
   Future<Either<AuthFailure, Unit>> signInWithEmailAndPassword({
     required EmailAddress emailAddress,
     required Password password,
+    required String username,
   });
   Future<Either<AuthFailure, Unit>> signInWithGoogle();
   Future<void> signOut();
