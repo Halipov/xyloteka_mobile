@@ -36,5 +36,14 @@ class SampleRepository implements IHttpRepository<Sample> {
       List<Sample>.from(json.decode(str).map((x) => Sample.fromMap(x)));
 
   @override
-  void postModel(Sample model) {}
+  void postModel(Sample model) async {
+    print(model.toJson());
+    await http.post(
+      Uri.parse('${HttpConsts.url}/api/sample'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: model.toJson(),
+    );
+  }
 }

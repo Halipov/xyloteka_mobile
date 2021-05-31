@@ -9,7 +9,7 @@ class FamilyRepository implements IHttpRepository<Family> {
   @override
   Future<Family> fetchModel(int id) async {
     final response =
-        await http.get(Uri.parse('${HttpConsts.url}/api/sample?id=$id'));
+        await http.get(Uri.parse('${HttpConsts.url}/api/family?id=$id'));
     if (response.statusCode == 200) {
       return responseFromJson(utf8.decode(response.bodyBytes)).first;
     } else {
@@ -19,7 +19,7 @@ class FamilyRepository implements IHttpRepository<Family> {
 
   @override
   Future<List<Family>> fetchModelList() async {
-    final response = await http.get(Uri.parse('${HttpConsts.url}/api/samples'));
+    final response = await http.get(Uri.parse('${HttpConsts.url}/api/family'));
     if (response.statusCode == 200) {
       return responseFromJson(utf8.decode(response.bodyBytes));
     } else {

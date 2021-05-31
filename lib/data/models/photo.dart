@@ -3,14 +3,13 @@ import 'dart:convert';
 import 'sample.dart';
 
 class Photo {
-  final int id;
-  final Sample sampleId;
-  final String photo;
-
+  int? id;
+  Sample? sampleId;
+  String? photo;
   Photo({
-    required this.id,
-    required this.sampleId,
-    required this.photo,
+    this.id,
+    this.sampleId,
+    this.photo,
   });
 
   Photo copyWith({
@@ -28,7 +27,7 @@ class Photo {
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'sampleId': sampleId.toMap(),
+      'sampleId': sampleId?.toMap(),
       'photo': photo,
     };
   }

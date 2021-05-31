@@ -8,22 +8,22 @@ import 'ordo.dart';
 import 'species.dart';
 
 class BotanicDescription {
-  final int id;
-  final Division divisio;
-  final Classis classis;
-  final Ordo ordo;
-  final Family family;
-  final Genus genus;
-  final Species species;
+  int? id;
+  Division? divisio;
+  Classis? classis;
+  Ordo? ordo;
+  Family? family;
+  Genus? genus;
+  Species? species;
 
   BotanicDescription({
-    required this.id,
-    required this.divisio,
-    required this.classis,
-    required this.ordo,
-    required this.family,
-    required this.genus,
-    required this.species,
+    this.id,
+    this.divisio,
+    this.classis,
+    this.ordo,
+    this.family,
+    this.genus,
+    this.species,
   });
 
   BotanicDescription copyWith({
@@ -49,12 +49,12 @@ class BotanicDescription {
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'divisio': divisio.toMap(),
-      'classis': classis.toMap(),
-      'ordo': ordo.toMap(),
-      'family': family.toMap(),
-      'genus': genus.toMap(),
-      'species': species.toMap(),
+      'divisio': divisio?.toMap(),
+      'classis': classis?.toMap(),
+      'ordo': ordo?.toMap(),
+      'family': family?.toMap(),
+      'genus': genus?.toMap(),
+      'species': species?.toMap(),
     };
   }
 
@@ -77,8 +77,7 @@ class BotanicDescription {
 
   @override
   String toString() {
-    // ignore: lines_longer_than_80_chars
-    return 'BotanicDescription(id: $id, divisio: $divisio, classis: $classis, ordo: $ordo, familiy: $family, genus: $genus, species: $species)';
+    return 'BotanicDescription(id: $id, divisio: $divisio, classis: $classis, ordo: $ordo, family: $family, genus: $genus, species: $species)';
   }
 
   @override

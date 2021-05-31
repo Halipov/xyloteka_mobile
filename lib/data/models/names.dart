@@ -1,14 +1,13 @@
 import 'dart:convert';
 
 class Names {
-  final int id;
-  final String tradeName;
-  final String altName;
-
+  int? id;
+  String? tradeName;
+  String? altName;
   Names({
-    required this.id,
-    required this.tradeName,
-    required this.altName,
+    this.id,
+    this.tradeName,
+    this.altName,
   });
 
   Names copyWith({

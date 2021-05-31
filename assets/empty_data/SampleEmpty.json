@@ -1,0 +1,48 @@
+{
+    "id": null,
+    "botanicDescription": {
+        "id": null,
+        "divisio": {
+            "id": 1,
+            "name": "Цветковые/Покрытосеменные (Magnoliophyta)"
+        },
+        "classis": {
+            "id": 2,
+            "name": "Хвойные (Pinоphyta/Coniferae)"
+        },
+        "ordo": {
+            "id": 2,
+            "name": "Розоцветные (Rosaceae)"
+        },
+        "family": {
+            "id": 2,
+            "name": "Розовые (Rosales)"
+        },
+        "genus": {
+            "id": 2,
+            "name": "Боярышник (Crataegus)"
+        },
+        "species": {
+            "id": 2,
+            "nameRus": "Боярышник",
+            "nameLat": "Crataegus spp."
+        }
+    },
+    "place": "2",
+    "whoCollect": null,
+    "whoDefine": null,
+    "trade": null,
+    "collectDate": 1622187209192,
+    "photos": null,
+    "description": null,
+    "property": {
+        "density": " ",
+        "hardness": " ",
+        "shrinkage": " "
+    },
+    "names": {
+        "id": null,
+        "tradeName": "re",
+        "altName": "re"
+    }
+}

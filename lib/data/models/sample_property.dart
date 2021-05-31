@@ -1,16 +1,15 @@
 import 'dart:convert';
 
 class SampleProperty {
-  final int id;
-  final String density;
-  final String hardness;
-  final String shrinkage;
-
+  int? id;
+  String? density;
+  String? hardness;
+  String? shrinkage;
   SampleProperty({
-    required this.id,
-    required this.density,
-    required this.hardness,
-    required this.shrinkage,
+    this.id,
+    this.density,
+    this.hardness,
+    this.shrinkage,
   });
 
   SampleProperty copyWith({

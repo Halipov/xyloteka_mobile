@@ -1,12 +1,12 @@
 import 'dart:convert';
 
 class Family {
-  final int id;
-  final String name;
-  
+  int? id;
+  String? name;
+
   Family({
-    required this.id,
-    required this.name,
+    this.id,
+    this.name,
   });
 
   Family copyWith({
@@ -43,10 +43,8 @@ class Family {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
-    return other is Family &&
-      other.id == id &&
-      other.name == name;
+
+    return other is Family && other.id == id && other.name == name;
   }
 
   @override

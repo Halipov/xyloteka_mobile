@@ -1,12 +1,11 @@
 import 'dart:convert';
 
 class Ordo {
-  final int id;
-  final String name;
-
+  int? id;
+  String? name;
   Ordo({
-    required this.id,
-    required this.name,
+    this.id,
+    this.name,
   });
 
   Ordo copyWith({

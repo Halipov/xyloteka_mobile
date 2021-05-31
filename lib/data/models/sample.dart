@@ -9,29 +9,29 @@ import 'sample_property.dart';
 import 'user.dart';
 
 class Sample {
-  final int id;
-  final BotanicDescription botanicDescription;
-  final String place;
-  final User whoCollect;
-  final User whoDefine;
-  final bool trade;
-  final DateTime collectDate;
-  final Set<Photo> photos;
-  final String description;
-  final SampleProperty property;
-  final Names names;
+  int? id;
+  BotanicDescription? botanicDescription;
+  String? place;
+  User? whoCollect;
+  User? whoDefine;
+  bool? trade;
+  DateTime? collectDate;
+  Set<Photo>? photos;
+  String? description;
+  SampleProperty? properties;
+  Names? names;
   Sample({
-    required this.id,
-    required this.botanicDescription,
-    required this.place,
-    required this.whoCollect,
-    required this.whoDefine,
-    required this.trade,
-    required this.collectDate,
-    required this.photos,
-    required this.description,
-    required this.property,
-    required this.names,
+    this.id,
+    this.botanicDescription,
+    this.place,
+    this.whoCollect,
+    this.whoDefine,
+    this.trade,
+    this.collectDate,
+    this.photos,
+    this.description,
+    this.properties,
+    this.names,
   });
 
   Sample copyWith({
@@ -44,7 +44,7 @@ class Sample {
     DateTime? collectDate,
     Set<Photo>? photos,
     String? description,
-    SampleProperty? property,
+    SampleProperty? properties,
     Names? names,
   }) {
     return Sample(
@@ -57,7 +57,7 @@ class Sample {
       collectDate: collectDate ?? this.collectDate,
       photos: photos ?? this.photos,
       description: description ?? this.description,
-      property: property ?? this.property,
+      properties: properties ?? this.properties,
       names: names ?? this.names,
     );
   }
@@ -65,16 +65,16 @@ class Sample {
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'botanicDescription': botanicDescription.toMap(),
+      'botanicDescription': botanicDescription?.toMap(),
       'place': place,
-      'whoCollect': whoCollect.toMap(),
-      'whoDefine': whoDefine.toMap(),
+      'whoCollect': whoCollect?.toMap(),
+      'whoDefine': whoDefine?.toMap(),
       'trade': trade,
-      'collectDate': collectDate.millisecondsSinceEpoch,
-      'photos': photos.map((x) => x.toMap()).toList(),
+      'collectDate': collectDate?.millisecondsSinceEpoch,
+      'photos': photos?.map((x) => x.toMap()).toList(),
       'description': description,
-      'property': property.toMap(),
-      'names': names.toMap(),
+      'property': properties?.toMap(),
+      'names': names?.toMap(),
     };
   }
 
@@ -83,13 +83,14 @@ class Sample {
       id: map['id'],
       botanicDescription: BotanicDescription.fromMap(map['botanicDescription']),
       place: map['place'],
-      whoCollect: User.fromMap(map['whoCollect']),
-      whoDefine: User.fromMap(map['whoDefine']),
+      whoCollect: User.fromMap(map['whoCollect'] ?? {'whoCollect': ''}),
+      whoDefine: User.fromMap(map['whoDefine'] ?? {'whoDefine': ''}),
       trade: map['trade'],
-      collectDate: DateTime.parse(map['collectDate']),
-      photos: Set<Photo>.from(map['photos']?.map((x) => Photo.fromMap(x))),
+      collectDate: DateTime.tryParse(map['collectDate'] ?? '2020-02-02'),
+      photos:
+          Set<Photo>.from(map['photos']?.map((x) => Photo.fromMap(x)) ?? []),
       description: map['description'],
-      property: SampleProperty.fromMap(map['property']),
+      properties: SampleProperty.fromMap(map['property']),
       names: Names.fromMap(map['names']),
     );
   }
@@ -100,7 +101,7 @@ class Sample {
 
   @override
   String toString() {
-    return 'Sample(id: $id, botanicDescription: $botanicDescription, place: $place, whoCollect: $whoCollect, whoDefine: $whoDefine, trade: $trade, collectDate: $collectDate, photos: $photos, description: $description, property: $property, names: $names)';
+    return 'Example(id: $id, botanicDescription: $botanicDescription, place: $place, whoCollect: $whoCollect, whoDefine: $whoDefine, trade: $trade, collectDate: $collectDate, photos: $photos, description: $description, properties: $properties, names: $names)';
   }
 
   @override
@@ -117,7 +118,7 @@ class Sample {
         other.collectDate == collectDate &&
         setEquals(other.photos, photos) &&
         other.description == description &&
-        other.property == property &&
+        other.properties == properties &&
         other.names == names;
   }
 
@@ -132,7 +133,7 @@ class Sample {
         collectDate.hashCode ^
         photos.hashCode ^
         description.hashCode ^
-        property.hashCode ^
+        properties.hashCode ^
         names.hashCode;
   }
 }

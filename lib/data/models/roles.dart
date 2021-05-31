@@ -5,12 +5,11 @@ import 'package:flutter/foundation.dart';
 import 'user_role.dart';
 
 class Roles {
-  int id;
-  List<String> name;
-
+  int? id;
+  List<String>? name;
   Roles({
-    required this.id,
-    required this.name,
+    this.id,
+    this.name,
   });
 
   Roles copyWith({

@@ -1,12 +1,12 @@
 import 'dart:convert';
 
 class Classis {
-  final int id;
-  final String name;
+  int? id;
+  String? name;
 
   Classis({
-    required this.id,
-    required this.name,
+    this.id,
+    this.name,
   });
 
   Classis copyWith({

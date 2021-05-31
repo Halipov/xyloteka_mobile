@@ -1,27 +1,28 @@
 import 'dart:convert';
 
 class User {
-  final int id;
-  final String firstName;
-  final String secondName;
-  final String lastName;
-  final String organization;
-  final String username;
-  final String password;
-  final String email;
-  final String phone;
-  final String about;
+  int? id;
+  String? firstName;
+  String? secondName;
+  String? lastName;
+  String? organization;
+  String? username;
+  String? password;
+  String? email;
+  String? phone;
+  String? about;
+
   User({
-    required this.id,
-    required this.firstName,
-    required this.secondName,
-    required this.lastName,
-    required this.organization,
-    required this.username,
-    required this.password,
-    required this.email,
-    required this.phone,
-    required this.about,
+    this.id,
+    this.firstName,
+    this.secondName,
+    this.lastName,
+    this.organization,
+    this.username,
+    this.password,
+    this.email,
+    this.phone,
+    this.about,
   });
 
   User copyWith({

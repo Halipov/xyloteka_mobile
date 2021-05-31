@@ -28,7 +28,7 @@ class _SamplesPageState extends State<SamplesPage> {
   late Future<List<Sample>> samples;
   int _currentIndex = 0;
   List<Widget> _children = [];
-  SampleRepository sampleRepository = SampleRepository();
+  final sampleRepository = SampleRepository();
 
   @override
   void initState() {
@@ -104,41 +104,44 @@ class SamplePage extends StatelessWidget {
             return ListView.builder(
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    context.pushRoute(
-                      BotanicInfoRoute(
-                        item: snapshot.data![index],
-                      ),
-                    );
+                return Dismissible(
+                  key: Key(snapshot.data![index].id.toString()),
+                  onDismissed: (direction) {
+                    // Remove the item from the data source.
+
+                    // Then show a snackbar.
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(content: Text('dismissed')));
                   },
-                  child: Card(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Expanded(
-                          child: Container(
-                            padding: const EdgeInsets.all(5),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Text(
-                                  // ignore: lines_longer_than_80_chars
-                                  'species: ${snapshot.data![index].botanicDescription.species.nameLat}',
-                                ),
-                                Text(
-                                  // ignore: lines_longer_than_80_chars
-                                  'Description: ${snapshot.data![index].description}',
-                                ),
-                                Text(
-                                  // ignore: lines_longer_than_80_chars
-                                  'Family: ${snapshot.data![index].botanicDescription.family.name}',
-                                ),
-                              ],
+                  child: GestureDetector(
+                    onTap: () {
+                      context.pushRoute(
+                        BotanicInfoRoute(
+                          item: snapshot.data![index],
+                        ),
+                      );
+                    },
+                    child: Card(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 10,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Trade Name: ${snapshot.data![index].names!.tradeName}',
                             ),
-                          ),
-                        )
-                      ],
+                            Text(
+                              'Alt Name: ${snapshot.data![index].names!.tradeName}',
+                            ),
+                            Text(
+                              'Description: ${snapshot.data![index].description}',
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 );
@@ -148,7 +151,7 @@ class SamplePage extends StatelessWidget {
             return Text("${snapshot.error}");
           }
           // By default, show a loading spinner.
-          return const CircularProgressIndicator();
+          return const Center(child: CircularProgressIndicator());
         },
       ),
     );

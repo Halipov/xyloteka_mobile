@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 class Genus {
-  final int id;
-  final String name;
+  int? id;
+  String? name;
   Genus({
-    required this.id,
-    required this.name,
+    this.id,
+    this.name,
   });
 
   Genus copyWith({

@@ -1,13 +1,13 @@
 import 'dart:convert';
 
 class Species {
-  final int id;
-  final String nameRus;
-  final String nameLat;
+  int? id;
+  String? nameRus;
+  String? nameLat;
   Species({
-    required this.id,
-    required this.nameRus,
-    required this.nameLat,
+    this.id,
+    this.nameRus,
+    this.nameLat,
   });
 
   Species copyWith({

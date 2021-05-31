@@ -5,20 +5,19 @@ import 'status.dart';
 import 'user.dart';
 
 class TradeOffer {
-  final int id;
-  final User whoRequest;
-  final Sample whatOffer;
-  final Sample whatAsk;
-  final String description;
-  final Status status;
-
+  final int? id;
+  final User? whoRequest;
+  final Sample? whatOffer;
+  final Sample? whatAsk;
+  final String? description;
+  final Status? status;
   TradeOffer({
-    required this.id,
-    required this.whoRequest,
-    required this.whatOffer,
-    required this.whatAsk,
-    required this.description,
-    required this.status,
+    this.id,
+    this.whoRequest,
+    this.whatOffer,
+    this.whatAsk,
+    this.description,
+    this.status,
   });
 
   TradeOffer copyWith({
@@ -42,11 +41,11 @@ class TradeOffer {
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'whoRequest': whoRequest.toMap(),
-      'whatOffer': whatOffer.toMap(),
-      'whatAsk': whatAsk.toMap(),
+      'whoRequest': whoRequest?.toMap(),
+      'whatOffer': whatOffer?.toMap(),
+      'whatAsk': whatAsk?.toMap(),
       'description': description,
-      'status': status.toMap(),
+      'status': status?.toMap(),
     };
   }
 
@@ -68,7 +67,6 @@ class TradeOffer {
 
   @override
   String toString() {
-    // ignore: lines_longer_than_80_chars
     return 'TradeOffer(id: $id, whoRequest: $whoRequest, whatOffer: $whatOffer, whatAsk: $whatAsk, description: $description, status: $status)';
   }
 

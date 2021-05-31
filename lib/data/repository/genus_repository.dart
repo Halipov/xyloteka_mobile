@@ -9,7 +9,7 @@ class GenusRepository implements IHttpRepository<Genus> {
   @override
   Future<Genus> fetchModel(int id) async {
     final response =
-        await http.get(Uri.parse('${HttpConsts.url}/api/sample?id=$id'));
+        await http.get(Uri.parse('${HttpConsts.url}/api/genus?id=$id'));
     if (response.statusCode == 200) {
       return responseFromJson(utf8.decode(response.bodyBytes)).first;
     } else {
@@ -19,7 +19,7 @@ class GenusRepository implements IHttpRepository<Genus> {
 
   @override
   Future<List<Genus>> fetchModelList() async {
-    final response = await http.get(Uri.parse('${HttpConsts.url}/api/samples'));
+    final response = await http.get(Uri.parse('${HttpConsts.url}/api/genus'));
     if (response.statusCode == 200) {
       return responseFromJson(utf8.decode(response.bodyBytes));
     } else {

@@ -1,12 +1,12 @@
 import 'dart:convert';
 
 class Division {
-  final int id;
-  final String name;
+  final int? id;
+  final String? name;
 
   Division({
-    required this.id,
-    required this.name,
+    this.id,
+    this.name,
   });
 
   Division copyWith({

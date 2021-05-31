@@ -48,4 +48,13 @@ class PhotoRepository implements IHttpRepository<Photo> {
   @override
   List<Photo> responseFromJson(String str) =>
       List<Photo>.from(json.decode(str).map((x) => Photo.fromMap(x)));
+
+  // Future<void> loadPhoto(File file) async {
+  //   var dio = Dio();
+  //   FormData formData = FormData.fromMap({
+  //     "name": "wendux",
+  //     "file1": UploadFileInfo(new File("./upload.jpg"), 'upload1.jpg')
+  //   });
+  //   response = await dio.post("/info", data: formData);
+  // }
 }

@@ -78,7 +78,7 @@ class SamplesRoute extends _i1.PageRouteInfo {
 }
 
 class BotanicInfoRoute extends _i1.PageRouteInfo<BotanicInfoRouteArgs> {
-  BotanicInfoRoute({_i2.Key? key, required _i8.Sample item})
+  BotanicInfoRoute({_i2.Key? key, required _i8.Sample? item})
       : super(name,
             path: '/botanic-info-page',
             args: BotanicInfoRouteArgs(key: key, item: item));
@@ -91,7 +91,7 @@ class BotanicInfoRouteArgs {
 
   final _i2.Key? key;
 
-  final _i8.Sample item;
+  final _i8.Sample? item;
 }
 
 class AddBotanicInfoRoute extends _i1.PageRouteInfo {

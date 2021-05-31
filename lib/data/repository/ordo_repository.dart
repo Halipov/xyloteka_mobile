@@ -9,7 +9,7 @@ class OrdoRepository implements IHttpRepository<Ordo> {
   @override
   Future<Ordo> fetchModel(int id) async {
     final response =
-        await http.get(Uri.parse('${HttpConsts.url}/api/sample?id=$id'));
+        await http.get(Uri.parse('${HttpConsts.url}/api/ordo?id=$id'));
     if (response.statusCode == 200) {
       return responseFromJson(utf8.decode(response.bodyBytes)).first;
     } else {
@@ -19,7 +19,7 @@ class OrdoRepository implements IHttpRepository<Ordo> {
 
   @override
   Future<List<Ordo>> fetchModelList() async {
-    final response = await http.get(Uri.parse('${HttpConsts.url}/api/samples'));
+    final response = await http.get(Uri.parse('${HttpConsts.url}/api/ordo'));
     if (response.statusCode == 200) {
       return responseFromJson(utf8.decode(response.bodyBytes));
     } else {
